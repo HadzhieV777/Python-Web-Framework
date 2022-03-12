@@ -1,0 +1,9 @@
+<a href="{% url 'index func-based' %}">FBW</a>
+<a href="{% url 'index class-based' %}">CBW</a>
+<a href="{% url 'index class-based(template)' %}">CBW (templated)</a>
+<a href="{% url 'todos list' %}">ToDos</a>
+
+<div>
+    {% block page_content %}
+    {% endblock %}
+</div>

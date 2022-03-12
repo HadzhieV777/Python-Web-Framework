@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    {#    {% for todo in object_list %} {# The context is passed as objects_list #}
+    {#        <div>#}
+    {#            {{ todo.title }}#}
+    {#        </div>#}
+    {#    {% endfor %}#}
+    {#    <hr>#}
+
+    <a href="{% url 'create todo' %}">Create Todo</a>
+    {% for todo in object_list %}
+        <div>
+            <a href="{% url 'todo details' todo.pk %}"> {{ todo.title }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}
