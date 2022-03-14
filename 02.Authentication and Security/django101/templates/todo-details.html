@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <h1>
+        {{ object.title }}
+    </h1>
+
+    {{ object.category.name }}
+    <p>
+        {{ object.description }}
+        {#   we can pass scripts through form fields #}
+        {#        {{ object.description|safe }}#}
+        {#       "|safe" must be used only for html input that comes from the admin of the site #}
+        {#        without "|safe" the site will return the input information sanitized #}
+        {#        meaning that the user input is not part of the DOM of the site #}
+    </p>
+
+{% endblock %}
