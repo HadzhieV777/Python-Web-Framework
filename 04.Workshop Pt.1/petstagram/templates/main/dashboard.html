@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+
+    {% if  pet_photos %}
+        <!-- If there are pet photos -->
+        <h1 class='text-center'>All Pet Photos</h1>
+        <div class="container mb-5">
+            <div class="row mb-5">
+                {% for pet_photo in pet_photos %}
+                    <!-- First Card with Info for the Pet -->
+                    <div class="card ml-3 mb-3" style="width: 18rem;">
+                        <!-- Image -->
+                        <img src="{{ pet_photo.photo.url }}"
+                             class="card-img-top" alt="{{ pet_photo.description }}">
+                        <div class="card-body">
+                            {% for pet in pet_photo.tagged_pets.all %}
+                                <!-- Info for each pet on the photo -->
+                                <h5 class="card-title">{{ pet.name }},{% if pet.date_of_birth %} age:
+                                    {{ pet.age }} {% endif %}</h5>
+                            {% endfor %}
+                            <!-- First 30 chars from the description -->
+                            <p class="card-text">{{ pet_photo.description|truncatechars:30 }}</p>
+                            <!-- Button to the Photo Details Page -->
+                            <a href="{% url 'photo details' pet_photo.pk %}" class="btn btn-primary">See details</a>
+                        </div>
+                    </div>
+                    <!-- End Pet Photos -->
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+
+        <!-- If there are NO pet photos -->
+        <h1 class='text-center'>No pet photos yet</h1>
+        <div class=" row d-flex justify-content-center align-content-center">
+            <!-- Button to Add a new Photo -->
+            <a href="{% url 'add photo' %}" class="btn btn-lg btn-secondary row align-self-baseline">Add Photo</a>
+        </div>
+
+    {% endif %}
+{% endblock %}
